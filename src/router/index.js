@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/homeView.vue'
 import EmojiView from '@/views/emojiView.vue'
 import AstroView from '@/views/astroView.vue'
+import PresentsView from '@/views/presentsView.vue'
+
 
 
 
@@ -22,7 +24,12 @@ const router = createRouter({
       path: '/astro',
       name: 'astro',
       component: AstroView
-    }
+    },
+    {
+      path: '/presents',
+      name: 'presents',
+      component: PresentsView
+    },
   ],
 })
 

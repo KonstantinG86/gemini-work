@@ -11,8 +11,7 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        background-color: rgb(200, 227, 163);
+        font-family: Georgia, 'Times New Roman', Times, serif
     }
     a {
         text-decoration: none;
