@@ -2,14 +2,14 @@
    <div class="main">
     <div class="container">
         <h1>Натальная карта</h1>
-        <pre>
-Для получения астрологического анализа введите дату рождения и место рождения
-        </pre>
+        <p>
+            Для получения астрологического анализа введите дату рождения и место рождения
+        </p>
         <h3>Выберите дату рождения:</h3>
         <input type="datetime-local" name="birthday" class="astro-container__date" v-model="dateTime">
         <input type="text" placeholder="Введите место рождения" class="astro-container__place" v-model="place">
-        <button @click="sendFilm" :disabled="isLoading">Отправить</button>
-        <h3>{{ result }}</h3>
+        <button @click="sendRequest" :disabled="isLoading">Отправить</button>
+        <div v-if="result" class="answer" v-html="formattedAnswer"></div>
         <router-link :to= "{ name: 'home' }">На главную</router-link>
     </div>
   </div>
@@ -17,18 +17,20 @@
 
 
 <script>
+    import { marked } from "marked";
+    import DOMPurify from "dompurify";
     import axios from 'axios';
     export default {
         data() {
             return {
-                date: '',
+                dateTime: '',
                 place: '',
                 result: '',
                 isLoading: false
             }
         },
         methods: {
-            async sendFilm() {
+            async sendRequest() {
                 this.isLoading = true;
                 try {
                     const apiKey = localStorage.getItem('apiKey');
@@ -56,7 +58,11 @@
         },
         computed: {
             prompt() {
-                return `предоставь астрологический анализ: знаки Зодиака, положение планет и их влияние. Если человек родился ${this.dateTime} и его место рождения ${this.place}}`
+                return `Предоставь астрологический анализ (знаки зодиака, планеты и их влияние). Человек родился ${this.dateTime}, место рождения: ${this.place}. Ответ оформи в Markdown с заголовками и списками.`
+            },
+            formattedAnswer() {
+                const html = marked.parse(this.result);
+                return DOMPurify.sanitize(html);
             }
         }
     }
@@ -64,5 +70,5 @@
 
 
 <style>
-
+    
 </style>

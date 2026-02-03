@@ -3,6 +3,8 @@ import HomeView from '@/views/homeView.vue'
 import EmojiView from '@/views/emojiView.vue'
 import AstroView from '@/views/astroView.vue'
 import PresentsView from '@/views/presentsView.vue'
+import RecipesView from '@/views/recipesView.vue'
+
 
 
 
@@ -29,6 +31,11 @@ const router = createRouter({
       path: '/presents',
       name: 'presents',
       component: PresentsView
+    },
+    {
+      path: '/recipes',
+      name: 'recipes',
+      component: RecipesView
     },
   ],
 })

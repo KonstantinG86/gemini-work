@@ -11,6 +11,7 @@
                 <li><router-link :to= "{ name: 'emoji' }">Эмодзи</router-link></li>
                 <li><router-link :to= "{ name: 'astro' }">Натальная карта</router-link></li>
                 <li><router-link :to= "{ name: 'presents' }">Подбор подарков</router-link></li>
+                <li><router-link :to= "{ name: 'recipes' }">Генератор рецептов</router-link></li>
             </ul>
         </div>
     </div>

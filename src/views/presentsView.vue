@@ -2,9 +2,9 @@
    <div class="main">
     <div class="container">
         <h1>Подбор подарков</h1>
-        <pre>
-Для подбора подарка введите интересы, хобби, возраст, пол и бюджет для подарка
-        </pre>
+        <p>
+            Для подбора подарка введите интересы, хобби, возраст, пол и бюджет для подарка
+        </p>
         <input list="interests" placeholder="Введите интересы" v-model="interests">
         <datalist id="interests">
             <option value="Работа" />
@@ -51,7 +51,7 @@
             <option value="до 50000 тенге" />
         </datalist>
         <button @click="sendData" :disabled="isLoading">Отправить</button>
-        <h3>{{ result }}</h3>
+        <div v-if="result" class="answer" v-html="formattedAnswer"></div>
         <router-link :to= "{ name: 'home' }">На главную</router-link>
     </div>
   </div>
@@ -59,6 +59,8 @@
 
 
 <script>
+    import { marked } from "marked";
+    import DOMPurify from "dompurify";
     import axios from 'axios';
     export default {
         data() {
@@ -101,7 +103,11 @@
         },
         computed: {
             prompt() {
-                return `Подбори подарок для человека, который имеет интересы ${this.interests}, хобби ${this.hobby}, возраст ${this.age}, пол ${this.gender} и бюджет ${this.budget} тенге.`
+                return `Подбори подарок для человека, который имеет интересы ${this.interests}, хобби ${this.hobby}, возраст ${this.age}, пол ${this.gender} и бюджет ${this.budget} тенге. Ответ оформи в Markdown с заголовками и списками.`
+            },
+            formattedAnswer() {
+                const html = marked.parse(this.result);
+                return DOMPurify.sanitize(html);
             }
         }
     }
