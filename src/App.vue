@@ -38,6 +38,12 @@
         padding: 20px;
         gap: 20px;
     }
+    @media (max-width: 600px){
+        .container {
+            width: 500px;
+        }
+    }
+    
     input {
         width: 580px;
         height: 30px;
