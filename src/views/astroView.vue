@@ -6,10 +6,29 @@
             Для получения астрологического анализа введите дату рождения и место рождения
         </p>
         <h3>Выберите дату рождения:</h3>
-        <input type="datetime-local" name="birthday" class="astro-container__date" v-model="dateTime">
-        <input type="text" placeholder="Введите место рождения" class="astro-container__place" v-model="place">
-        <button @click="sendRequest" :disabled="isLoading">Отправить</button>
-        <div v-if="result" class="answer" v-html="formattedAnswer"></div>
+        <input 
+            type="datetime-local" 
+            name="birthday" 
+            class="astro-container__date" 
+            v-model="dateTime"
+        >
+        <input 
+            type="text" 
+            placeholder="Введите место рождения" 
+            class="astro-container__place" 
+            v-model="place"
+        >
+        <button 
+            @click="sendRequest" 
+            :disabled="isLoading"
+        >
+            Отправить
+        </button>
+        <div 
+            v-if="result" 
+            class="answer" 
+            v-html="formattedAnswer"
+        ></div>
         <router-link :to= "{ name: 'home' }">На главную</router-link>
     </div>
   </div>
@@ -17,6 +36,7 @@
 
 
 <script>
+// Данный импорт я нашел для красивого вывода ответа в формате Markdown
     import { marked } from "marked";
     import DOMPurify from "dompurify";
     import axios from 'axios';

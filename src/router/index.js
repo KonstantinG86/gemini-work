@@ -6,9 +6,6 @@ import PresentsView from '@/views/presentsView.vue'
 import RecipesView from '@/views/recipesView.vue'
 
 
-
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

@@ -5,7 +5,11 @@
         <p>
             Для подбора подарка введите интересы, хобби, возраст, пол и бюджет для подарка
         </p>
-        <input list="interests" placeholder="Введите интересы" v-model="interests">
+        <input 
+            list="interests" 
+            placeholder="Введите интересы" 
+            v-model="interests"
+        >
         <datalist id="interests">
             <option value="Работа" />
             <option value="Спорт" />
@@ -50,8 +54,17 @@
             <option value="до 20000 тенге" />
             <option value="до 50000 тенге" />
         </datalist>
-        <button @click="sendData" :disabled="isLoading">Отправить</button>
-        <div v-if="result" class="answer" v-html="formattedAnswer"></div>
+        <button 
+            @click="sendData" 
+            :disabled="isLoading"
+        >
+            Отправить
+        </button>
+        <div 
+            v-if="result" 
+            class="answer" 
+            v-html="formattedAnswer"
+        ></div>
         <router-link :to= "{ name: 'home' }">На главную</router-link>
     </div>
   </div>
@@ -59,6 +72,7 @@
 
 
 <script>
+// Данный импорт я нашел для красивого вывода ответа в формате Markdown
     import { marked } from "marked";
     import DOMPurify from "dompurify";
     import axios from 'axios';

@@ -20,17 +20,36 @@
             </label>
         </div>
         <label class="checkbox-item">
-            <input type="checkbox" v-model="diet">
+            <input 
+                type="checkbox" 
+                v-model="diet"
+            >
             <span>Диетическое блюдо</span>
         </label>
 
         <label class="checkbox-item">
-            <input type="checkbox" v-model="spicy">
+            <input 
+                type="checkbox" 
+                v-model="spicy"
+            >
             <span>Острое блюдо</span>
         </label>
-        <input type="text" placeholder="Введите свои ингредиенты" v-model="writeIngredients">
-        <button @click="sendData" :disabled="isLoading">Отправить</button>
-        <div v-if="result" class="answer" v-html="formattedAnswer"></div>
+        <input 
+            type="text" 
+            placeholder="Введите свои ингредиенты" 
+            v-model="writeIngredients"
+        >
+        <button 
+            @click="sendRequest" 
+            :disabled="isLoading"
+        >
+            Отправить
+        </button>
+        <div 
+            v-if="result" 
+            class="answer" 
+            v-html="formattedAnswer"
+        ></div>
         <router-link :to= "{ name: 'home' }">На главную</router-link>
     </div>
   </div>
@@ -38,6 +57,7 @@
 
 
 <script>
+    // Данный импорт я нашел для красивого вывода ответа в формате Markdown
     import { marked } from "marked";
     import DOMPurify from "dompurify";
     import axios from 'axios';
@@ -78,7 +98,7 @@
             }
         },
         methods: {
-            async sendData() {
+            async sendRequest() {
                 this.isLoading = true;
                 try {
                     const apiKey = localStorage.getItem('apiKey');
